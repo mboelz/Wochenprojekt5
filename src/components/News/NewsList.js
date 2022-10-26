@@ -1,5 +1,6 @@
 import React from 'react';
 import NewsItem from './NewsItem';
+import styles from './NewsList.module.css'
 
 const NewsList = articles => {
   // console.log(typeof articles.articles);
@@ -7,18 +8,18 @@ const NewsList = articles => {
   const newsJSX = articles.articles.map((article, index) => {
     return (
       <NewsItem
-        key={index}
-        id={index + 1}
-        author={article.author}
-        title={article.title}
-        date={article.created_at}
-        url={article.url}
-      />
+      key={index}
+      id={index + 1}
+      author={article.author}
+      title={article.title}
+      date={article.created_at}
+      url={article.url}
+    />
     );
   });
 
   return (
-    <div>
+    <div className={styles.NewsList}>
       <h1>NewsList</h1>
       {newsJSX}
     </div>

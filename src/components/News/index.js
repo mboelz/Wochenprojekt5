@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import NewsList from './NewsList';
+import Logo from "../../Assets/img/Logo-removebg.png"
 
 const numberOfArticles = 10; // z.B. für Butten mit Inputfeld Newsanzahl
 const url = `https://hn.algolia.com/api/v1/search_by_date?tags=story&hitsPerPage=${numberOfArticles}`;
@@ -21,9 +22,14 @@ const News = () => {
   }, []);
 
   return (
+    <>
+    <div>
+    <img src={Logo} className="logo" alt="Logo News"/>
+    </div>
     <div>
       <NewsList articles={articles} />
     </div>
+    </>
   );
 };
 
