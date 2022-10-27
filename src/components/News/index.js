@@ -1,11 +1,23 @@
 import React, { useEffect, useState } from 'react';
 import NewsList from './NewsList';
 import Logo from "../../Assets/img/Logo-removebg.png"
+import Searchbar from './Searchbar';
 
-const numberOfArticles = 10; // z.B. für Butten mit Inputfeld Newsanzahl
-const url = `https://hn.algolia.com/api/v1/search_by_date?tags=story&hitsPerPage=${numberOfArticles}`;
+// search_by_date?tags=story&
 
-const News = () => {
+
+const News = () => {  //aller JSON code ab hier
+  
+  const numberOfArticles = 10; // z.B. für Butten mit Inputfeld Newsanzahl
+  const [articles, setArticles] = useState([]);
+  const [url, setUrl] = useState(`https://hn.algolia.com/api/v1/search_by_date?tags=story&hitsPerPage=${numberOfArticles}`);
+  // is Loading zu späterem Zeitpunkt
+  // const INITURL = `https://hn.algolia.com/api/v1/search_by_date?tags=story&hitsPerPage=${numberOfArticles}`;
+  
+  // const url = `https://hn.algolia.com/api/v1/search_by_date?query=${searchQuery}&hitsPerPage=${numberOfArticles}`;
+
+
+  
   // Funktion um articles zu fetchen
   function getArticles() {
     fetch(url)
@@ -13,21 +25,19 @@ const News = () => {
       .then(articles => setArticles(articles.hits)); // temporäres Ergebnis im State speichern
   }
 
-  const [articles, setArticles] = useState([]);
-  // is Loading zu späterem Zeitpunkt
 
   // Funktion einmalig aufrufen
   useEffect(() => {
     getArticles();
-  }, []);
+  }, [url]);
 
   return (
     <>
+    {/* <div>
+    </div> */}
     <div>
-    <img src={Logo} className="logo" alt="Logo News"/>
-    </div>
-    <div>
-      <NewsList articles={articles} />
+      <Searchbar setUrl={setUrl} numberOfArticles={numberOfArticles}/>
+      {articles.length < 1 ? <h1>Nix gefunden</h1> :  <NewsList articles={articles} />}
     </div>
     </>
   );

@@ -1,0 +1,31 @@
+.btn {
+    font-size: 2rem;
+    background-color: Transparent;
+    border: none;
+    cursor:pointer;
+    color:#78abae;
+}
+
+
+div > input{
+    max-width: 350px;
+    background-color: #78abae;
+    color: #353535;
+    font-size: 1.4rem;
+    padding: 10px;
+    border-radius: 10px;
+    margin-bottom: 10px;
+    border: none;
+}
+
+/* @media only screen and  (min-width: 400px) {
+    div > input {
+        width: 350px;
+        
+} */
+
+.searchbar {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
