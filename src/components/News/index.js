@@ -7,7 +7,7 @@ import Searchbar from './Searchbar';
 const News = () => {
   //aller JSON code ab hier
 
-  const numberOfArticles = 10; // z.B. für Butten mit Inputfeld Newsanzahl
+  const [numberOfArticles, setNumberOfArticles] = useState(10); // z.B. für Butten mit Inputfeld Newsanzahl
   const [articles, setArticles] = useState([]);
   const [url, setUrl] = useState(
     `https://hn.algolia.com/api/v1/search_by_date?tags=story&hitsPerPage=${numberOfArticles}`
@@ -29,12 +29,20 @@ const News = () => {
     getArticles();
   }, [url]);
 
+  useEffect(() => {
+    getArticles();
+  }, [numberOfArticles]);
+
   return (
     <>
       {/* <div>
     </div> */}
       <div>
-        <Searchbar setUrl={setUrl} numberOfArticles={numberOfArticles} />
+        <Searchbar
+          setUrl={setUrl}
+          numberOfArticles={numberOfArticles}
+          setNumberOfArticles={setNumberOfArticles}
+        />
         {articles.length < 1 ? (
           <h1>Nix gefunden</h1>
         ) : (

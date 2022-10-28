@@ -61,3 +61,13 @@
   margin-right: 5px;
   margin-left: 10px;
 }
+
+@media only screen and (max-width: 500px) {
+  .points {
+    display: none;
+  }
+
+  .NewsItem-Text-Info {
+    flex-direction: column;
+  }
+}
